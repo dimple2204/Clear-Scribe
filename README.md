@@ -30,7 +30,7 @@ Setup ⚙️
 
 Clone the repo:
 
-git clone https://github.com/your-username/clearscribe.git
+git clone https://github.com/dimple2204/Clear-Scribe.git
 
 Serve with a local server:
 
