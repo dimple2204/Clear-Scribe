@@ -54,16 +54,15 @@ Toggle light/dark mode 🌗
 
 
 Demo 🌐
-
+https://dimple2204.github.io/Clear-Scribe/
 
 
 License 📜
 
 MIT License. See LICENSE.
 
-Contact 📬
-
-
+Contact 📬 
+dimple.gaur2204@gmail.com
 
 
 
