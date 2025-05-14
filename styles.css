@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100 семантическое значениеvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1e1e2f, #2a1e4a);
+    padding: 20px;
+    transition: background 0.5s ease;
+}
+
+body.light {
+    background: linear-gradient(135deg, #f0f4ff, #d9e2ff);
+}
+
+.background-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.2)"/></svg>') repeat;
+    animation: particleMove 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes particleMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-1000px); }
+}
+
+.container {
+    background: rgba(30, 30, 47, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+body.light .container {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffcc;
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+    background: linear-gradient(45deg, #00ffcc, #00b8ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.light h1 {
+    background: linear-gradient(45deg, #1e1e2f, #2a1e4a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.theme-toggle input {
+    display: none;
+}
+
+.theme-toggle label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+body.light .theme-toggle label {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.sun-icon, .moon-icon {
+    width: 24px;
+    height: 24px;
+    fill: #00ffcc;
+    transition: opacity 0.3s ease;
+}
+
+body.light .sun-icon, body.light .moon-icon {
+    fill: #1e1e2f;
+}
+
+.theme-toggle input:not(:checked) ~ label .sun-icon {
+    opacity: 0;
+    position: absolute;
+}
+
+.theme-toggle input:checked ~ label .moon-icon {
+    opacity: 0;
+    position: absolute;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+#start-btn {
+    background: linear-gradient(45deg, #00ffcc, #00b8ff);
+    color: #1e1e2f;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+#start-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
+}
+
+#stop-btn {
+    background: linear-gradient(45deg, #ff007a, #ff4da6);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 122, 0.5);
+}
+
+#stop-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255, 0, 122, 0.8);
+}
+
+#clear-btn {
+    background: linear-gradient(45deg, #ffcc00, #ff8c00);
+    color: #1e1e2f;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+}
+
+#clear-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255, 204, 0, 0.8);
+}
+
+button:disabled {
+    background: #4a4a6a !important;
+    color: #999;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+body.light button:disabled {
+    background: #ccc !important;
+}
+
+.mic-icon, .clear-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.listening .mic-icon {
+    animation: pulseMic 1.5s infinite;
+}
+
+@keyframes pulseMic {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.output-wrapper {
+    position: relative;
+}
+
+#output {
+    width: 100%;
+    min-height: 180px;
+    padding: 20px;
+    border: 2px solid rgba(0, 255, 204, 0.3);
+    border-radius: 15px;
+    font-size: 1.1rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    resize: none;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+body.light #output {
+    color: #1e1e2f;
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(30, 30, 47, 0.3);
+}
+
+#output:focus {
+    outline: none;
+    border-color: #00ffcc;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+#output:not(:placeholder-shown) {
+    animation: typing 0.5s ease;
+}
+
+@keyframes typing {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+}
+
+.spinner {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border: 4px solid #00ffcc;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.listening .spinner {
+    display: block;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    #output {
+        min-height: 140px;
+        font-size: 1rem;
+    }
+}
